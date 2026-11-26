@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>墨研工坊 · 考研理论问答</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css?v=quiztabs-below-nav" />
+</head>
+<body>
+
+<!-- ============================================================
+     视图 1 · 登录
+     ============================================================ -->
+<section class="view view--login" data-view="login" hidden>
+  <div class="login">
+    <aside class="login__brand">
+      <div class="login__brand-top">
+        <div class="mark">
+          <img class="brand-logo brand-logo--login" src="assets/logo.svg" alt="墨研工坊" />
+        </div>
+        <div class="mark__txt">
+          <div class="mark__cn">墨研工坊</div>
+          <div class="mark__en">研习空间</div>
+        </div>
+      </div>
+      <p class="login__tagline">为艺术设计考研理论而生</p>
+    </aside>
+
+    <!-- 右侧：表单 -->
+    <div class="login__form-wrap">
+      <div class="login__form">
+        <form class="form" novalidate onsubmit="goto(event,'select')">
+          <label class="field">
+            <span class="field__lab">账号 / 手机号</span>
+            <input type="text" name="user" placeholder="如：墨研考生2026" autocomplete="username" />
+          </label>
+          <label class="field">
+            <span class="field__lab">密码</span>
+            <input type="password" name="pwd" placeholder="至少 8 位" autocomplete="current-password" />
+            <button class="field__aux" type="button" tabindex="-1">忘记密码</button>
+          </label>
+
+          <div class="form__row">
+            <a class="form__alt" href="#" onclick="return false">注册新账号</a>
+          </div>
+
+          <button class="btn btn--primary btn--lg" type="submit">
+            <span>进入工坊</span>
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     视图 2 · 选择学校与专业
+     ============================================================ -->
+<section class="view view--select" data-view="select" hidden>
+  <header class="topbar">
+    <div class="topbar__left">
+      <button class="back" type="button" onclick="goto(null,'login')" aria-label="返回登录">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="square"/></svg>
+      </button>
+      <div class="topbar__mark topbar__mark--sm">
+        <img class="brand-logo brand-logo--top" src="assets/logo.svg" alt="" aria-hidden="true" />
+        <span>墨研工坊</span>
+      </div>
+    </div>
+    <nav class="steps" aria-label="进度">
+      <span class="step is-done"><i>01</i>登入</span>
+      <span class="step is-now"><i>02</i>选择方向</span>
+      <span class="step"><i>03</i>开始答题</span>
+    </nav>
+    <div class="topbar__right">
+      <span class="who">良 · 墨研考生2026</span>
+      <button class="avatar" type="button" onclick="openProfileHome()" aria-label="进入个人空间">良</button>
+    </div>
+  </header>
+
+  <main class="select">
+    <div class="select__head">
+      <h2 class="select__title">选择院校与专业</h2>
+    </div>
+
+    <div class="select__cols">
+      <section class="picker">
+        <header class="picker__head">
+          <span class="picker__no">一</span>
+          <h3 class="picker__title">目标院校</h3>
+          <span class="picker__hint" data-bind="school-hint">未选择</span>
+        </header>
+        <ul class="picker__list" role="listbox" aria-label="院校" data-group="school">
+          <li><button type="button" class="opt" data-value="浙江工业大学" data-sub="ZJUT">
+            <span class="opt__no">01</span>
+            <span class="opt__name">浙江工业大学</span>
+          </button></li>
+          <li><button type="button" class="opt" data-value="浙江理工大学" data-sub="ZSTU">
+            <span class="opt__no">02</span>
+            <span class="opt__name">浙江理工大学</span>
+          </button></li>
+          <li><button type="button" class="opt" data-value="杭州师范大学" data-sub="HZNU">
+            <span class="opt__no">03</span>
+            <span class="opt__name">杭州师范大学</span>
+          </button></li>
+          <li><button type="button" class="opt" data-value="浙江科技大学" data-sub="ZUST">
+            <span class="opt__no">04</span>
+            <span class="opt__name">浙江科技大学</span>
+          </button></li>
+          <li><button type="button" class="opt" data-value="湖州师范学院" data-sub="HUTC">
+            <span class="opt__no">05</span>
+            <span class="opt__name">湖州师范学院</span>
+          </button></li>
+        </ul>
+      </section>
+
+      <section class="picker">
+        <header class="picker__head">
+          <span class="picker__no">二</span>
+          <h3 class="picker__title">报考专业</h3>
+          <span class="picker__hint" data-bind="major-hint">未选择</span>
+        </header>
+        <ul class="picker__list picker__list--grid" role="listbox" aria-label="专业" data-group="major">
+          <li><button type="button" class="opt opt--grid" data-value="视觉传达设计">
+            <span class="opt__no">01</span>
+            <span class="opt__name">视觉传达设计</span>
+          </button></li>
+          <li><button type="button" class="opt opt--grid" data-value="数字媒体设计">
+            <span class="opt__no">02</span>
+            <span class="opt__name">数字媒体设计</span>
+          </button></li>
+          <li><button type="button" class="opt opt--grid" data-value="服装设计">
+            <span class="opt__no">03</span>
+            <span class="opt__name">服装设计</span>
+          </button></li>
+          <li><button type="button" class="opt opt--grid" data-value="环境设计">
+            <span class="opt__no">04</span>
+            <span class="opt__name">环境设计</span>
+          </button></li>
+          <li><button type="button" class="opt opt--grid" data-value="工业设计">
+            <span class="opt__no">05</span>
+            <span class="opt__name">工业设计</span>
+          </button></li>
+        </ul>
+      </section>
+    </div>
+
+    <footer class="select__foot">
+      <div class="receipt" aria-live="polite">
+        <div class="receipt__row"><span>院校</span><b data-bind="school-out">—</b></div>
+        <div class="receipt__row"><span>专业</span><b data-bind="major-out">—</b></div>
+        <div class="receipt__stamp">待确认</div>
+      </div>
+      <button id="confirmSelect" class="btn btn--primary btn--lg" type="button" disabled onclick="startLibraryMode()">
+        <span>确认并进入题库</span>
+      </button>
+    </footer>
+  </main>
+</section>
+
+
+<!-- ============================================================
+     视图 4 · 答题主界面
+     ============================================================ -->
+<section class="view view--quiz" data-view="quiz" hidden>
+  <header class="topbar topbar--quiz">
+    <div class="topbar__left">
+      <div class="topbar__mark topbar__mark--sm">
+        <img class="brand-logo brand-logo--top" src="assets/logo.svg" alt="" aria-hidden="true" />
+        <span>墨研工坊</span>
+      </div>
+    </div>
+    <nav class="appnav" aria-label="主导航" data-appnav></nav>
+    <div class="topbar__right">
+      <button class="avatar" type="button" onclick="openProfileHome()" aria-label="进入个人空间">良</button>
+    </div>
+  </header>
+
+  <main class="quiz">
+    <section class="practice-shell" aria-label="练习控制台">
+      <div class="practice-switch" aria-label="练习模式">
+        <div data-practice-head>
+          <h2 data-practice-title>开始答题</h2>
+        </div>
+        <div class="practice-switch__actions" role="group" aria-label="选择练习模式">
+          <button class="mode-toggle is-on" type="button" data-mode="library" onclick="setQuizMode('library')">题库练习</button>
+          <button class="mode-toggle" type="button" data-mode="custom" onclick="setQuizMode('custom')">自定义题目</button>
+          <button class="mode-toggle" type="button" data-mode="search" onclick="setQuizMode('search')">搜题模式</button>
+          <button class="mode-toggle" type="button" data-mode="recommend" onclick="setQuizMode('recommend')">个人推荐练习</button>
+        </div>
+      </div>
+      <p class="practice-profile-note" data-practice-profile-note hidden>当前画像基于 39 次有效练习生成。表述能力相对稳定，下一步建议围绕 中国古代器物与家具需要优先补强 展开。</p>
+      <aside class="profile-recommend-panel" data-recommend-panel hidden aria-label="根据画像推荐训练">
+        <div class="profile-recommend-panel__copy">
+          <span>画像推荐</span>
+          <h3>根据画像推荐训练</h3>
+          <p>当前画像基于 39 次有效练习生成。表述能力相对稳定，下一步建议围绕中国古代器物与家具优先补强。</p>
+          <div class="profile-recommend-panel__tags" aria-label="推荐主题">
+            <b>中国古代器物与家具</b>
+            <b>可持续与绿色设计</b>
+            <b>现代设计师与代表作品</b>
+          </div>
+        </div>
+        <div class="profile-recommend-panel__actions" aria-label="薄弱题型入口">
+          <button data-recommend-type="fill" type="button" onclick="setRecommendedType('fill')">填空题</button>
+          <button data-recommend-type="essay" type="button" onclick="setRecommendedType('essay')">论述题（热点型）</button>
+          <button data-recommend-type="term" type="button" onclick="setRecommendedType('term')">名词解释</button>
+        </div>
+      </aside>
+      <div class="quiztabs" role="tablist">
+        <button class="quiztab is-on" data-type="fill"  role="tab">填空</button>
+        <button class="quiztab"        data-type="term" role="tab">名词解释</button>
+        <button class="quiztab"        data-type="short" role="tab">简答</button>
+        <button class="quiztab"        data-type="essay" role="tab">论述</button>
+      </div>
+    </section>
+    <section class="qstage" id="qstage"></section>
+  </main>
+
+</section>
+
+
+<!-- ============================================================
+     视图 5 · 个人空间
+     ============================================================ -->
+<section class="view view--profile" data-view="profile" hidden>
+  <header class="topbar">
+    <div class="topbar__left">
+      <div class="topbar__mark">
+        <img class="brand-logo brand-logo--top" src="assets/logo.svg" alt="" aria-hidden="true" />
+        <span>墨研工坊</span>
+      </div>
+    </div>
+    <nav class="appnav" aria-label="主导航" data-appnav></nav>
+    <div class="topbar__right">
+      <button class="avatar is-on" type="button" onclick="openProfileHome()" aria-label="个人空间">良</button>
+    </div>
+  </header>
+
+  <main class="profile" id="profileSpace"></main>
+</section>
+
+
+<script src="assets/app.js?v=quiztabs-below-nav"></script>
+</body>
+</html>
